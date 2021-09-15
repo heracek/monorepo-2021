@@ -1,0 +1,365 @@
+import { theme as theTheme } from './theme';
+import { Head, Image, Notes, Steps } from 'mdx-deck';
+import { Mermaid } from './mermaid';
+import imgBabel from './images/babel.png';
+import imgMindBlown from './images/blow-mind-mind-blown.gif';
+import imgCard from './images/card.jpg';
+import imgMonolith from './images/monolith.jpg';
+
+export const theme = theTheme;
+
+<Head>
+  <title>Monorepo 🍱</title>
+</Head>
+
+# Monorepo 🍱
+
+---
+
+# What is Monorepo? 🍱
+
+---
+
+## Multi-Repo 🍣; 🥡; 🍜
+
+<Mermaid zoom={1.2}>
+  {`graph BT
+  subgraph "Repo 3 🍜"
+  ds("Design System")
+  end
+  
+  subgraph "Repo 2 🥡"
+  ds -->|"( NPM )"| app1(("Application 2"))
+  end
+  
+  subgraph "Repo 1 🍣"
+  ds -- "( NPM )" --> app2(("Application 1"))
+  end
+  `}
+</Mermaid>
+
+---
+
+## Monorepo 🍱
+
+<Mermaid zoom={1.2}>
+  {`graph BT
+  subgraph "Monorepo 🍱 Repo"
+  ds("Design System")
+  ds --> app2(("Application 1"))
+  ds --> app1(("Application 2"))
+  end
+  `}
+</Mermaid>
+
+---
+
+## Monorepo 🍱
+
+<img src={imgMindBlown} style={{ zoom: 0.75 }} />
+
+---
+
+### Monorepo 🍱 != Monolith 🗿
+
+<img src={imgMonolith} style={{ zoom: 0.75 }} />
+
+---
+
+### Monolith? 🗿
+
+<Steps>
+
+- ✅ property of **code**
+- ❗ not property of **version control**
+- 🤔 Git is distributed, ...
+- ...therefore my app is distributed? 🤗
+- ...
+- ... No.
+- 😢
+
+</Steps>
+
+---
+
+# Why Monorepo? 🍱 🤔
+
+<Steps>
+
+- #1: Shared code for multiple projects
+- #2: Split monolith to smaller parts
+
+</Steps>
+
+---
+
+#### #1 Shared Code - Multi-Repo 🍣; 🥡; 🍜
+
+<Mermaid zoom={1.2}>
+  {`graph BT
+  subgraph "Repo 3 🍜"
+  ds("Design System")
+  end
+  
+  subgraph "Repo 2 🥡"
+  ds -->|"( NPM )"| app1(("Application 2"))
+  end
+  
+  subgraph "Repo 1 🍣"
+  ds -- "( NPM )" --> app2(("Application 1"))
+  end
+  `}
+</Mermaid>
+
+---
+
+#### #1 Shared Code - Multi-Repo 🍣; 🥡; 🍜
+
+<Mermaid>
+  {`graph LR
+  style PR fill:orange
+  style Tag fill:orange
+  style PR1 fill:orange
+  style PR2 fill:orange
+  PR(["PR to Design system"]) --> Tag(["Release PR"]) --> CI --> NPM --> PR1(["PR to App 1"]) --> CI1(CI 1) --> d1(Deployed 1)
+  NPM --> PR2(["PR to App 2"]) --> CI2(CI 2) --> d2(Deployed 2)
+`}
+</Mermaid>
+
+<Steps>
+
+# 😱
+
+</Steps>
+
+---
+
+#### #1 Shared Code - Monorepo 🍱
+
+<Mermaid zoom={1.2}>
+  {`graph BT
+  subgraph "Monorepo 🍱 Repo"
+  ds("Design System")
+  ds --> app2(("Application 1"))
+  ds --> app1(("Application 2"))
+  end
+  `}
+</Mermaid>
+
+---
+
+#### #1 Shared Code - Monorepo 🍱
+
+<Steps>
+
+<div>
+  <Mermaid zoom={1.2}>
+    {`graph LR
+      style PR fill:#ff5e00
+      PR(["Atomic PR"]) --> CI1 --> Deployed1
+      PR --> CI2 --> Deployed2
+    `}
+  </Mermaid>
+</div>
+
+# 🤩
+
+</Steps>
+
+---
+
+#### #2: Split monolith to smaller parts
+
+<Steps>
+  <div>
+    <Mermaid zoom={1.2}>
+      {`graph BT
+      subgraph "Repo"
+      monolith(("Ugly Ugly Bad Monolith Application"))
+      end
+      `}
+    </Mermaid>
+  </div>
+</Steps>
+
+---
+
+- No clear boundaries
+- Compilation is slow
+
+---
+
+<Mermaid zoom={1.2}>
+  {`graph BT
+  subgraph "Monorepo 🍱 Repo"
+  ds1("Module 1") --> app
+  ds2("Module 2") --> app
+  ds3("Module 3") --> app
+  ds4("Module 4") --> app
+  app(("Better Application"))
+  ds2 --> ds1
+  end
+  `}
+</Mermaid>
+
+---
+
+<Mermaid zoom={1.2}>
+  {`graph BT
+  subgraph "Monorepo 🍱 Repo"
+  ds1("Module 1") --> app
+  ds2("Module 2") --> app
+  ds3("Module 3") --> app
+  ds4("Module 4") --> app
+  ds4 --> app1
+  app(("Better Application"))
+  app1(("Demo 4 App"))
+  ds2 --> ds1
+  end
+  `}
+</Mermaid>
+
+---
+
+## Who Uses Monorepo? 🍱 🤔
+
+<Steps>
+
+- Google, Facebook, Microsoft, Twitter, Uber, Airbnb?
+- Microsoft Windows (in 2017):
+  - merged 40 repos
+  - 3 500 000 files
+  - 300 GB checkout
+  - 3 500 developers
+- Facebook ~30 000 SW engineers and 1 repo
+
+</Steps>
+
+---
+
+## Who Uses Monorepo? 🍱 🤔
+
+<Steps>
+
+- Babel, React, Angular, Vue, Next.js?
+- many switched from Multi-Repo
+
+</Steps>
+
+---
+
+<Image
+  src={imgBabel}
+  style={{
+    backgroundSize: 'contain',
+    alignItems: 'center',
+    display: 'flex',
+    flexDirection: 'column'
+  }}
+>
+
+<Steps>
+
+<div>
+<div style={{ backgroundColor: 'rgba(0,0,0,0.66)', paddingLeft: '16px', paddingRight: '16px' }}>
+
+# 🐠 Babel
+
+</div>
+</div>
+
+<div>
+<div style={{ backgroundColor: 'rgba(0,0,0,0.66)', paddingLeft: '16px', paddingRight: '16px' }}>
+
+- since 2015
+- ~140 modules
+
+</div>
+</div>
+
+</Steps>
+
+</Image>
+
+---
+
+## Downsides 👎
+
+1. Access Control
+2. Versioning
+3. Scaling (Git, Build System)
+
+---
+
+### 1. Access Control 🚫
+
+<Steps>
+
+- only one repo (all or nothing)
+- `CODEOWNERS` file:
+  ```
+  /apps/ @octocat @octodog @user123
+  /docs/ @example-org/docs-team @example-org/ci-team
+  ```
+
+</Steps>
+
+---
+
+### 2. Versioning 🏷
+
+<Steps>
+
+- no support for "old version of package"
+- **🌲🌳 Evergreen 🌴🎄** code
+- 🙀 "more" work
+- 😻 less technical dept
+- 😺 if needed there are ways around it
+
+</Steps>
+
+---
+
+### 3.1 Scaling 📈 - Git
+
+<Steps>
+
+- for <~100 users
+  - use squash & rebase
+  - use `git-lfs` (Git Large File Storage)
+- for >~1000 users
+  - [Git Scalar](https://github.com/microsoft/scalar) (GitHub, Azure DevOps, Gitlab, ...)
+    - [Virtual File System for Git](https://vfsforgit.org/)
+  - or consider Mercurial (used at Facebook)
+
+</Steps>
+
+---
+
+### 3.2 Scaling 📈 - Build System
+
+<Steps>
+
+- JavaScript / TypeScript
+  - [Nx](https://nx.dev/) by Nrwl
+- universal
+  - [Buck](https://buck.build/) by Facebook
+  - [Bazel](https://bazel.build/) by Google
+  - [Pants](https://github.com/pantsbuild/pants) by Twitter
+- [and others...](https://github.com/korfuri/awesome-monorepo#build-systems--dependency-management-tools)
+
+</Steps>
+
+---
+
+# Monorepo? 🍱
+
+---
+
+<img src={imgCard} style={{ zoom: 0.75, height: '100%' }} />
+
+---
+
+# The End
+
+🙏 Thank you for your attention!

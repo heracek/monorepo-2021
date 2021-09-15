@@ -1,0 +1,35 @@
+{
+  "name": "monorepo-2021",
+  "version": "1.0.0",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "patch-package",
+    "start": "mdx-deck --no-open ./src/deck.mdx",
+    "clean": "rm -rf .cache public",
+    "prebuild": "npm run clean",
+    "build": "gatsby build --prefix-paths",
+    "deploy": "run-s build deploy:ghpages",
+    "deploy:ghpages": "gh-pages --dist public",
+    "format": "yarn prettier --write \"**/*.{js,jsx,ts,tsx,md,mdx,yml,yaml}\""
+  },
+  "dependencies": {
+    "@mdx-deck/themes": "^4.1.0",
+    "gatsby": "^2.13.24",
+    "gatsby-plugin-catch-links": "^3.10.0",
+    "mdx-deck": "^4.1.1",
+    "mermaid": "^8.12.1",
+    "react-mermaid2": "^0.1.4"
+  },
+  "devDependencies": {
+    "@mdx-deck/gatsby-plugin": "^4.1.1",
+    "gatsby-plugin-compile-es6-packages": "^2.1.0",
+    "gatsby-source-filesystem": "^3.10.0",
+    "gh-pages": "^3.2.3",
+    "husky": "^7.0.2",
+    "lint-staged": "^11.1.2",
+    "npm-run-all": "^4.1.5",
+    "patch-package": "^6.4.7",
+    "prettier": "^2.4.1"
+  }
+}
