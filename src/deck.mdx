@@ -14,6 +14,8 @@ export const theme = theTheme;
 
 # Monorepo 🍱
 
+###### Tomáš Horáček
+
 ---
 
 # What is Monorepo? 🍱
@@ -96,17 +98,17 @@ export const theme = theTheme;
 #### #1 Shared Code - Multi-Repo 🍣; 🥡; 🍜
 
 <Mermaid zoom={1.2}>
-  {`graph BT
-  subgraph "Repo 3 🍜"
+  {`graph LR
+  subgraph "Repo 1 🍜"
   ds("Design System")
   end
   
   subgraph "Repo 2 🥡"
-  ds -->|"( NPM )"| app1(("Application 2"))
+  ds -->|"( NPM )"| tribe(("Tribe Features"))
   end
   
-  subgraph "Repo 1 🍣"
-  ds -- "( NPM )" --> app2(("Application 1"))
+  subgraph "Repo 3 🍣"
+  tribe -- "( NPM )" --> app(("Application"))
   end
   `}
 </Mermaid>
@@ -121,27 +123,21 @@ export const theme = theTheme;
   style Tag fill:orange
   style PR1 fill:orange
   style PR2 fill:orange
-  PR(["PR to Design system"]) --> Tag(["Release PR"]) --> CI --> NPM --> PR1(["PR to App 1"]) --> CI1(CI 1) --> d1(Deployed 1)
-  NPM --> PR2(["PR to App 2"]) --> CI2(CI 2) --> d2(Deployed 2)
+  PR(["PR to Design system"]) --> Tag(["Release PR"]) --> CI --> NPM1("NPM") --> PR1(["PR to Tribe"]) --> CI1(CI 1) --> NPM2
+  NPM2("NPM") --> PR2(["PR to App"]) --> CI2(CI 2) --> d2(App Deployed)
 `}
 </Mermaid>
-
-<Steps>
-
-# 😱
-
-</Steps>
 
 ---
 
 #### #1 Shared Code - Monorepo 🍱
 
-<Mermaid zoom={1.2}>
-  {`graph BT
+<Mermaid zoom={1}>
+  {`graph LR
   subgraph "Monorepo 🍱 Repo"
   ds("Design System")
-  ds --> app2(("Application 1"))
-  ds --> app1(("Application 2"))
+  ds --> tribe(("Tribe Feature"))
+  tribe --> app1(("Application"))
   end
   `}
 </Mermaid>
@@ -150,21 +146,14 @@ export const theme = theTheme;
 
 #### #1 Shared Code - Monorepo 🍱
 
-<Steps>
-
 <div>
   <Mermaid zoom={1.2}>
     {`graph LR
       style PR fill:#ff5e00
-      PR(["Atomic PR"]) --> CI1 --> Deployed1
-      PR --> CI2 --> Deployed2
+      PR(["Atomic PR"]) --> CI --> Deployed
     `}
   </Mermaid>
 </div>
-
-# 🤩
-
-</Steps>
 
 ---
 
@@ -357,6 +346,17 @@ export const theme = theTheme;
 ---
 
 <img src={imgCard} style={{ zoom: 0.75, height: '100%' }} />
+
+---
+
+# One more thing...
+
+<Steps>
+
+- Sensei Meetup:
+- Monorepo 🍱
+
+</Steps>
 
 ---
 
